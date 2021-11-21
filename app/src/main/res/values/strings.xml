@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">BMI analyzer</string>
+    <string name="next">Next</string>
+
 </resources>
