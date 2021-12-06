@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context=".RegesterationActivity"
+android:orientation="vertical"
+android:background="@drawable/border_background"
+    >
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/complete"
+    android:textSize="@dimen/thirty_two_sp"
+    android:layout_marginTop="@dimen/fifty_dp"
+    android:layout_marginHorizontal="@dimen/sixteen_dp"
+    android:textStyle="bold"
+    android:textColor="@color/blue"
+    android:textAlignment="center"/>
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/thirty_dp"
+    android:layout_marginVertical="@dimen/sixteen_dp"
+    android:orientation="horizontal"
+    >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/gender"
+        android:textSize="@dimen/sixteen_sp"
+        android:textColor="@color/blue"
+        android:textStyle="bold"
+        android:layout_gravity="center_vertical"
+        />
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginStart="@dimen/forty_dp">
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/male"
+            android:textSize="@dimen/twelve_sp"
+            android:textColor="@color/blue"
+            android:layout_marginHorizontal="@dimen/forty_dp"
+           />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/female"
+            android:textSize="@dimen/twelve_sp"
+            android:textColor="@color/blue"
+            android:layout_marginStart="@dimen/forty_dp"/>
+    </RadioGroup>
+</LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/thirty_dp"
+        android:layout_marginVertical="@dimen/sixteen_dp"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/weight"
+            android:textSize="@dimen/sixteen_sp"
+            android:textColor="@color/blue"
+            android:textStyle="bold"
+            android:layout_gravity="center_vertical"
+            />
+
+    </LinearLayout>
+<Button
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/thirty_dp"
+    android:text="@string/save_data"
+    android:textStyle="bold"/>
+
+</LinearLayout>
