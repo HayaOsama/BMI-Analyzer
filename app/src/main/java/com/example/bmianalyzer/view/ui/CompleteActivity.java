@@ -1,4 +1,4 @@
-package com.example.bmianalyzer.view;
+package com.example.bmianalyzer.view.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 

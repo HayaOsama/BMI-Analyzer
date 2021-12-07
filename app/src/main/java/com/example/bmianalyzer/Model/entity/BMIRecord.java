@@ -1,22 +1,22 @@
-package com.example.bmianalyzer.Model;
+package com.example.bmianalyzer.Model.entity;
 
 import com.example.bmianalyzer.R;
 
 import java.util.Date;
 
-import static com.example.bmianalyzer.Model.BMIConstants.*;
+import static com.example.bmianalyzer.Model.Interfaces.BMIConstants.*;
 
 public class BMIRecord {
    private double length , weight ;
-   private Date date ;
+   private String date ;
 
-    public BMIRecord(double length, double weight, Date date) {
+    public BMIRecord(double length, double weight, String date) {
         this.length = length;
         this.weight = weight;
         this.date = date;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 

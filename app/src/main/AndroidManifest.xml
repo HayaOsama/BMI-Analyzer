@@ -9,11 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BMIAnalyzer">
-        <activity android:name=".view.HomeActivity"/>
-        <activity android:name=".view.CompleteActivity" />
-        <activity android:name=".view.RegesterationActivity" />
-        <activity android:name=".view.LoginActivity" />
-        <activity android:name=".view.SplashActivity">
+        <activity android:name=".view.ui.NewRecordActivity"></activity>
+        <activity android:name=".view.ui.HomeActivity" />
+        <activity android:name=".view.ui.CompleteActivity" />
+        <activity android:name=".view.ui.RegesterationActivity" />
+        <activity android:name=".view.ui.LoginActivity" />
+        <activity android:name=".view.ui.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

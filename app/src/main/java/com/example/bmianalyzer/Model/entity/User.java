@@ -1,20 +1,20 @@
-package com.example.bmianalyzer.Model;
+package com.example.bmianalyzer.Model.entity;
 
 import com.example.bmianalyzer.R;
 
-import static com.example.bmianalyzer.Model.BMIConstants.*;
+import static com.example.bmianalyzer.Model.Interfaces.BMIConstants.*;
 import java.util.ArrayList;
 
 public class User {
 
    private String name , password , email ;
    private double  age ;
-   private ArrayList<BMIRecord> records ;
+   private ArrayList<BMIRecord> records  ;
    private static  User user ;
    private int gender ;
 
   public static final User getUser(String name, String password, String email , int gender){
-      if (user == null) new User(name , password , email , gender);
+      if (user == null) user= new User(name , password , email , gender);
       return user ;
   }
 
@@ -62,10 +62,13 @@ public class User {
         return records;
     }
 
-    public boolean addRecord(BMIRecord record) {
-        return records.add(record);
+    public void addRecord(BMIRecord record) {
+         records.add(record);
     }
 
+    public void reset(){
+      records = new ArrayList<>();
+    }
     public BMIRecord getRecord(int record) {
         return records.get(record);
     }
@@ -86,7 +89,14 @@ public class User {
       return 1 ;
     }
 
+    public int getStatus(){
+      return BMIRecord.toStringStatus(records.get(records.size()-1).getStatus(getAgePercentage()));
+    }
 
+    public int getMessage(){
+      int i = records.size()-1 ;
+      return getMessage(records.get(i) , records.get(i-1));
+    }
     public int getMessage(BMIRecord rc1 , BMIRecord rc2){
        double diff = rc1.getBMI(getAgePercentage()) - rc2.getBMI(getAgePercentage()) ;
        int status= rc1.getStatus(getAgePercentage());

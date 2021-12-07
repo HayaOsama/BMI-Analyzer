@@ -1,10 +1,10 @@
-package com.example.bmianalyzer.view;
+package com.example.bmianalyzer.view.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import com.example.bmianalyzer.Model.User;
+import com.example.bmianalyzer.Model.entity.User;
 import com.example.bmianalyzer.databinding.ActivityLoginBinding;
 
 public class LoginActivity extends AppCompatActivity {

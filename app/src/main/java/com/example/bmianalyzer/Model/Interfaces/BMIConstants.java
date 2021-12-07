@@ -1,4 +1,4 @@
-package com.example.bmianalyzer.Model;
+package com.example.bmianalyzer.Model.Interfaces;
 
 public interface BMIConstants {
           int MALE=0 ,FEMALE=1 ;

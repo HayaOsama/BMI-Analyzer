@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.CompleteActivity"
+    tools:context=".view.ui.CompleteActivity"
     android:orientation="vertical"
     android:background="@drawable/border_background"
     >
@@ -30,8 +30,10 @@
         android:hint="@string/name"
         android:backgroundTint="@color/blue"
         android:layout_margin="@dimen/sixteen_dp"
+
         >
         <EditText
+            android:id="@+id/name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
@@ -46,6 +48,7 @@
         android:layout_margin="@dimen/sixteen_dp"
         >
         <EditText
+            android:id="@+id/email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
@@ -61,6 +64,7 @@
         android:layout_margin="@dimen/sixteen_dp"
         >
         <EditText
+            android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
@@ -76,6 +80,7 @@
         android:layout_margin="@dimen/sixteen_dp"
         >
         <EditText
+            android:id="@+id/repassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
@@ -83,6 +88,7 @@
             />
     </com.google.android.material.textfield.TextInputLayout>
     <Button
+        android:id="@+id/create_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/thirty_dp"
@@ -104,6 +110,7 @@
 
             />
         <TextView
+            android:id="@+id/login_txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/login"

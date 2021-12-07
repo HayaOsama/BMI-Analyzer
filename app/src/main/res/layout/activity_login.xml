@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.LoginActivity"
+    tools:context=".view.ui.LoginActivity"
     android:orientation="vertical"
     android:background="@drawable/border_background"
     >
@@ -34,6 +34,7 @@
         android:layout_margin="@dimen/sixteen_dp"
         >
         <EditText
+            android:id="@+id/user_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
@@ -50,6 +51,7 @@
         android:layout_margin="@dimen/sixteen_dp"
         >
         <EditText
+            android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
@@ -58,6 +60,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
+        android:id="@+id/login_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/thirty_dp"
@@ -79,6 +82,7 @@
 
             />
         <TextView
+            android:id="@+id/sign_up_txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/sign_up"

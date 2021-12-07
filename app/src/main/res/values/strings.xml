@@ -34,20 +34,24 @@
     <string name="add_food">Add Food</string>
     <string name="add_record">Add Record</string>
     <string name="view_food">View Food</string>
-    <string name="log_out">Logout</string>
+    <string name="log_out"><u>Logout</u></string>
 
     <string name="normal">Normal</string>
     <string name="over_weight">Over Weight</string>
     <string name="under_weight">Under Weight</string>
     <string name="obesity">Obesity</string>
 
-    <string name="LC"> (Little Changes)</string>
-    <string name="SG"> (Still Good)</string>
-    <string name="GA"> (Go Ahead)</string>
-    <string name="BC"> (Be Careful)</string>
-    <string name="SB">So Bad</string>
-    <string name="delta">difference between the last two BMI</string>
+    <string name="LC"> (little Changes)</string>
+    <string name="SG"> (still Good)</string>
+    <string name="GA"> (go Ahead)</string>
+    <string name="BC"> (be Careful)</string>
+    <string name="SB"> (so Bad)</string>
+    <string name="delta"> (difference between the last two BMI)</string>
 
+    <string name="new_record">New Record</string>
+    <string name="date">Date</string>
+    <string name="time">Time</string>
 
-
+    <string name="kg">KG</string>
+    <string name="cm">cm</string>
 </resources>
