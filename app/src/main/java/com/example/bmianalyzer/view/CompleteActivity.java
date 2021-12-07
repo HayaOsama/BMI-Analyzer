@@ -1,8 +1,10 @@
-package com.example.bmianalyzer;
+package com.example.bmianalyzer.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.bmianalyzer.R;
 
 public class CompleteActivity extends AppCompatActivity {
 

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SplashActivity"
+    tools:context=".view.SplashActivity"
     android:background="@color/blue">
 
     <ImageView
@@ -22,6 +22,7 @@
         android:layout_margin="@dimen/sixteen_dp"
         android:textStyle="bold"
         android:textSize="@dimen/sixteen_sp"
+        android:onClick="next"
         />
 
 </RelativeLayout>

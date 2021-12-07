@@ -1,14 +1,16 @@
-package com.example.bmianalyzer;
+package com.example.bmianalyzer.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class SplashActivity extends AppCompatActivity {
+import com.example.bmianalyzer.R;
+
+public class HomeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash);
+        setContentView(R.layout.activity_home);
     }
 }

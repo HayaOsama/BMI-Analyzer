@@ -4,7 +4,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
 xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
-tools:context=".RegesterationActivity"
+tools:context=".view.RegesterationActivity"
 android:orientation="vertical"
 android:background="@drawable/border_background"
     >
@@ -73,7 +73,89 @@ android:background="@drawable/border_background"
             android:textStyle="bold"
             android:layout_gravity="center_vertical"
             />
+        <Button
+            android:layout_width="@dimen/forty_dp"
+            android:layout_height="@dimen/forty_dp"
+            android:layout_marginStart="@dimen/fifty_dp"
+            android:text="@string/minus"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/sixteen_dp"
+            android:text="@string/dummy_weight"
+            android:textSize="@dimen/sixteen_sp"
+            android:gravity="center_vertical"
+            android:textStyle="bold"
+            />
+        <Button
+            android:layout_width="@dimen/forty_dp"
+            android:layout_height="@dimen/forty_dp"
+            android:layout_marginStart="@dimen/sixteen_dp"
+            android:text="@string/plus"
+            />
+    </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/thirty_dp"
+        android:layout_marginVertical="@dimen/sixteen_dp"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/length"
+            android:textSize="@dimen/sixteen_sp"
+            android:textColor="@color/blue"
+            android:textStyle="bold"
+            android:layout_gravity="center_vertical"
+            />
+        <Button
+            android:layout_width="@dimen/forty_dp"
+            android:layout_height="@dimen/forty_dp"
+            android:layout_marginStart="@dimen/fifty_dp"
+            android:text="@string/minus"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/sixteen_dp"
+            android:text="@string/dummy_height"
+            android:textSize="@dimen/sixteen_sp"
+            android:gravity="center_vertical"
+            android:textStyle="bold"
+            />
+        <Button
+            android:layout_width="@dimen/forty_dp"
+            android:layout_height="@dimen/forty_dp"
+            android:layout_marginStart="@dimen/sixteen_dp"
+            android:text="@string/plus"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="@dimen/sixteen_dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dob"
+            android:textColor="@color/blue"
+            android:textStyle="bold"
+            android:textSize="@dimen/sixteen_sp"
+            android:layout_margin="@dimen/sixteen_dp"/>
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="bottom"
+            android:backgroundTint="@color/blue"
+            android:enabled="false"/>
     </LinearLayout>
 <Button
     android:layout_width="match_parent"
