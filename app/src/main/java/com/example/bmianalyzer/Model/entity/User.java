@@ -1,28 +1,34 @@
 package com.example.bmianalyzer.Model.entity;
 
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
+
 import com.example.bmianalyzer.R;
 
 import static com.example.bmianalyzer.Model.Interfaces.BMIConstants.*;
+
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class User {
 
    private String name , password , email ;
-   private double  age ;
+   private Date bod ;
    private ArrayList<BMIRecord> records  ;
    private static  User user ;
    private int gender ;
 
-  public static final User getUser(String name, String password, String email , int gender){
-      if (user == null) user= new User(name , password , email , gender);
+  public static final User getUser(String name, String password ){
+      if (user == null) user= new User(name , password  );
       return user ;
   }
 
-    private User(String name, String password, String email, int gender) {
+    private User(String name, String password) {
         this.name = name;
         this.password = password;
-        this.email = email;
-        this.gender = gender ;
         records = new ArrayList<>();
     }
 
@@ -50,34 +56,65 @@ public class User {
         this.email = email;
     }
 
-    public double getAge() {
-        return age;
-    }
 
-    public void setAge(double age) {
-        this.age = age;
-    }
+    //calculate the age from the bod and return it
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public int getAge() {
+      LocalDate b =  LocalDate.of(bod.getYear() , bod.getMonth() , bod.getDay());
+        Period period = Period.between(b, LocalDate.now());
+      return period.getYears();
+    }//getAge
 
+    //get the Birth of Date
+    public Date getBod() {
+        return bod;
+    }//getBod
+
+    //get the gender
+    public int getGender() {
+        return gender;
+    }//getGender
+
+    //set the gender
+    public void setGender(int gender) {
+        this.gender = gender;
+    }//setGender
+
+    // set Birth of Date
+    public void setBod(Date bod) {
+        this.bod = bod;
+    }//setBod
+
+    //return ALL records
     public ArrayList<BMIRecord> getRecords() {
         return records;
-    }
+    }//getRecords
 
+    //Add new record
     public void addRecord(BMIRecord record) {
          records.add(record);
-    }
+    }//addRecord
 
+
+    //Initialize the records ArrayList
     public void reset(){
       records = new ArrayList<>();
-    }
+    }//reset
+
+    //return specific the records
     public BMIRecord getRecord(int record) {
         return records.get(record);
-    }
+    }//getRecord
 
+    //setRecords to replace the current records with new ones
     public void setRecords(ArrayList<BMIRecord> records) {
         this.records = records;
-    }
+    }//setRecords
 
+    //BMI is different according to User age
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public double getAgePercentage(){
+      int age = getAge() ;
       if ( age >=2 && age<= 10) return .7 ;
         if ( age >10 && age<= 20)
          switch (gender){
@@ -87,16 +124,21 @@ public class User {
               return  0.8 ;
          }
       return 1 ;
-    }
+    }//getAgePercent
 
+    //return the status of last BMIRecord
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public int getStatus(){
       return BMIRecord.toStringStatus(records.get(records.size()-1).getStatus(getAgePercentage()));
-    }
+    }//getStatus
 
+    //return the message to the user
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public int getMessage(){
       int i = records.size()-1 ;
       return getMessage(records.get(i) , records.get(i-1));
-    }
+    }//getMessage
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public int getMessage(BMIRecord rc1 , BMIRecord rc2){
        double diff = rc1.getBMI(getAgePercentage()) - rc2.getBMI(getAgePercentage()) ;
        int status= rc1.getStatus(getAgePercentage());
@@ -126,5 +168,5 @@ public class User {
         }
 
         return R.string.SG ;
-    }
+    }//getMessage
 }

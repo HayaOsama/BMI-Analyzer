@@ -183,7 +183,11 @@ android:background="@drawable/border_background"
             android:layout_weight="1"
             android:layout_gravity="bottom"
             android:backgroundTint="@color/blue"
-            android:editable="false"/>
+            android:editable="false"
+            android:focusable="false"
+            android:drawableEnd="@drawable/icon_date"
+            android:textColor="@color/dark"
+            android:foregroundGravity="center_vertical"/>
     </LinearLayout>
 <Button
     android:id="@+id/save_data_btn"

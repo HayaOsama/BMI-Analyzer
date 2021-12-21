@@ -9,6 +9,7 @@ import static com.example.bmianalyzer.Model.Interfaces.BMIConstants.*;
 public class BMIRecord {
    private double length , weight ;
    private String date ;
+   private String time ;
 
     public BMIRecord(double length, double weight, String date) {
         this.length = length;
@@ -29,7 +30,7 @@ public class BMIRecord {
     }
 
     public double getBMI(double percent) {
-        return (weight / Math.sqrt(length) ) * percent ;
+        return ((weight / Math.sqrt(length/100) ) * percent) ;
 
     }
 
@@ -51,7 +52,23 @@ public class BMIRecord {
         return -1;
     }
 
+    public void setLength(double length) {
+        this.length = length;
+    }
 
+    public void setWeight(double weight) {
+        this.weight = weight;
+    }
 
+    public void setDate(String date) {
+        this.date = date;
+    }
 
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
 }

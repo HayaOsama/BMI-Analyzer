@@ -1,6 +1,7 @@
 package com.example.bmianalyzer.view.adapter;
 
 import android.content.Context;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bmianalyzer.Model.entity.BMIRecord;
@@ -45,6 +47,7 @@ public class BMIRecordAdapter extends  RecyclerView.Adapter<RecyclerView.ViewHol
         return new BMIRecordHolder(itemView);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
             BMIRecord bmiRecord = records.get(position);
@@ -62,20 +65,7 @@ public class BMIRecordAdapter extends  RecyclerView.Adapter<RecyclerView.ViewHol
         return records.size();
     }
 
-//    public String setDateString(int year, int monthOfYear, int dayOfMonth) {
-//        // Increment monthOfYear for Calendar/Date -> Time Format setting
-//        monthOfYear++;
-//        String mon = "" + monthOfYear;
-//        String day = "" + dayOfMonth;
-//
-//        if (monthOfYear < 10)
-//            mon = "0" + monthOfYear;
-//        if (dayOfMonth < 10)
-//            day = "0" + dayOfMonth;
-//
-//        return day + "/" + mon + "/" + year;
-//
-//    }//setDateString
+
 
     static class BMIRecordHolder extends RecyclerView.ViewHolder{
 

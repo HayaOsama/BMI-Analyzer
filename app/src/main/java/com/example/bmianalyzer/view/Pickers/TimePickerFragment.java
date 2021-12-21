@@ -3,6 +3,7 @@ package com.example.bmianalyzer.view.Pickers;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
@@ -16,14 +17,15 @@ import java.util.Calendar;
 /**
  * DialogFragment used to pick a ToDoItem deadline date
  */
-public class DatePickerFragment extends DialogFragment {
+public class TimePickerFragment extends DialogFragment {
+    TimePickerDialog.OnTimeSetListener onTimeSetListener ;
 
-    DatePickerDialog.OnDateSetListener onDateSetListener;
+
 
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        onDateSetListener = (DatePickerDialog.OnDateSetListener) context;
+        onTimeSetListener = ( TimePickerDialog.OnTimeSetListener) context;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -33,12 +35,13 @@ public class DatePickerFragment extends DialogFragment {
 
         // Use the current date as the default date in the picker
         final Calendar c = Calendar.getInstance();
-        int year = c.get(Calendar.YEAR);
-        int month = c.get(Calendar.MONTH);
-        int day = c.get(Calendar.DAY_OF_MONTH);
+        int hourOfDay = c.get(Calendar.HOUR_OF_DAY);
+        int minute = c.get(Calendar.MINUTE);
+
 
         // Create a new instance of DatePickerDialog and return it
-        return new  DatePickerDialog(getActivity(), onDateSetListener, year, month, day);
+        return   new TimePickerDialog(getActivity() , onTimeSetListener , hourOfDay , minute , false);
+
 
     }
 

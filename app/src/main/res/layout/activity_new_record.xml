@@ -137,14 +137,18 @@
             android:layout_margin="@dimen/sixteen_dp"/>
 
         <EditText
-            android:id="@+id/date"
+            android:id="@+id/edit_date"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_gravity="bottom"
             android:backgroundTint="@color/blue"
             android:layout_marginHorizontal="@dimen/sixteen_dp"
-            android:editable="false"/>
+            android:editable="false"
+            android:focusable="false"
+            android:drawableEnd="@drawable/icon_date"
+            android:textColor="@color/dark"
+           android:foregroundGravity="center_vertical"/>
     </LinearLayout>
 
     <LinearLayout
@@ -163,13 +167,17 @@
             android:layout_margin="@dimen/sixteen_dp"/>
 
         <EditText
-            android:id="@+id/time"
+            android:id="@+id/edit_time"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_gravity="bottom"
             android:backgroundTint="@color/blue"
             android:layout_marginHorizontal="@dimen/sixteen_dp"
+            android:drawableEnd="@drawable/ic_baseline_access_time_24"
+            android:textColor="@color/dark"
+            android:foregroundGravity="center_vertical"
+            android:focusable="false"
             android:editable="false"/>
     </LinearLayout>
     <Button
