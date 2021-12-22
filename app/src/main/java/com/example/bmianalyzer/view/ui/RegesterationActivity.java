@@ -1,16 +1,15 @@
 package com.example.bmianalyzer.view.ui;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.bmianalyzer.Model.Interfaces.BMIConstants;
-import com.example.bmianalyzer.R;
+import com.example.bmianalyzer.Model.storageHelpers.SharedPreferencesHelper;
+import com.example.bmianalyzer.Model.entity.User;
 import com.example.bmianalyzer.databinding.ActivityRegesterationBinding;
 
 public class RegesterationActivity extends AppCompatActivity  {
@@ -20,6 +19,12 @@ private ActivityRegesterationBinding binding ;
         super.onCreate(savedInstanceState);
         binding = ActivityRegesterationBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        // calling the action bar
+        ActionBar actionBar = getSupportActionBar();
+
+        // showing the back button in action bar
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
         clicks();
     }
 
@@ -51,12 +56,11 @@ private ActivityRegesterationBinding binding ;
         String userPassword= binding.password.getText().toString();
         String userRePassword= binding.repassword.getText().toString();
 
+
+
         if(userPassword.equals(userRePassword)){
-            SharedPreferences.Editor sharedPref = getPreferences(Context.MODE_PRIVATE).edit();
-            sharedPref.putBoolean(BMIConstants.USER_LOGIN_STATUS, true);
-            sharedPref.putString(BMIConstants.USER_NAME, userName);
-            sharedPref.putString(BMIConstants.USER_PASSWORD, userPassword);
-            sharedPref.apply();
+            User user = User.getUser(userName,userPassword);
+            SharedPreferencesHelper.setUser(user, getApplicationContext());
             return true ;
         }else{
             Toast.makeText(this, "Password and re-password are not matched", Toast.LENGTH_SHORT).show();

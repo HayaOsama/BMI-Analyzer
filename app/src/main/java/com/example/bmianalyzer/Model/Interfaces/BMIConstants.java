@@ -14,4 +14,6 @@ public interface BMIConstants {
           String USER_STATUS = "user_status" ;
           String USER_MESSAGE = "user_message" ;
           String USER_PASSWORD ="user_password" ;
+          String USER_FILE= "user_file" ;
+          String USER_BOD= "user_bod" ;
 }

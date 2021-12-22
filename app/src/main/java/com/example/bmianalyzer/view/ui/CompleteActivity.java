@@ -1,21 +1,22 @@
 package com.example.bmianalyzer.view.ui;
 
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
-import android.content.Context;
+
 import android.content.Intent;
-import android.content.SharedPreferences;
+
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.DatePicker;
 
 import com.example.bmianalyzer.Model.Interfaces.BMIConstants;
-import com.example.bmianalyzer.Model.SharedPreferencesHelper;
+import com.example.bmianalyzer.Model.storageHelpers.SharedPreferencesHelper;
 import com.example.bmianalyzer.Model.entity.BMIRecord;
 import com.example.bmianalyzer.Model.entity.User;
 import com.example.bmianalyzer.R;
@@ -35,6 +36,13 @@ public class CompleteActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         binding = ActivityCompleteBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        // calling the action bar
+        ActionBar actionBar = getSupportActionBar();
+
+        // showing the back button in action bar
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
         //attach onClickListeners
         binding.minusLength.setOnClickListener(this);
         binding.plusLength.setOnClickListener(this);
@@ -42,7 +50,7 @@ public class CompleteActivity extends AppCompatActivity implements View.OnClickL
         binding.plusWeight.setOnClickListener(this);
         binding.dobEdit.setOnClickListener(this);
         binding.saveDataBtn.setOnClickListener(this);
-        user =User.getUser(SharedPreferencesHelper.getUserName(this) , SharedPreferencesHelper.getUserPassword(this));
+        user =SharedPreferencesHelper.getUser(getApplicationContext());
 
     }
 
@@ -88,11 +96,7 @@ public class CompleteActivity extends AppCompatActivity implements View.OnClickL
         else user.setGender(BMIConstants.FEMALE);
         String date = Calendar.DAY_OF_MONTH+"/"+ Calendar.MONTH+"/"+Calendar.YEAR ;
         user.addRecord(new BMIRecord(length , weight ,date));
-        SharedPreferences.Editor sharedPref = getPreferences(Context.MODE_PRIVATE).edit();
-        sharedPref.putInt(BMIConstants.USER_GENDER, user.getGender());
-        sharedPref.putInt(BMIConstants.USER_STATUS, user.getStatus());
-        sharedPref.putInt(BMIConstants.USER_MESSAGE, user.getMessage());
-        sharedPref.apply();
+        SharedPreferencesHelper.setUser(user,getApplicationContext());
         startActivity(new Intent(this, HomeActivity.class));
     }
 

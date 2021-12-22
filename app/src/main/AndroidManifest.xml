@@ -9,11 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BMIAnalyzer">
-        <activity android:name=".view.ui.AddFoodActivity"></activity>
-        <activity android:name=".view.ui.NewRecordActivity" />
+        <activity android:name=".view.ui.AddFoodActivity" android:parentActivityName=".view.ui.HomeActivity"></activity>
+        <activity android:name=".view.ui.NewRecordActivity" android:parentActivityName=".view.ui.HomeActivity"/>
         <activity android:name=".view.ui.HomeActivity" />
         <activity android:name=".view.ui.CompleteActivity" />
-        <activity android:name=".view.ui.RegesterationActivity" />
+        <activity android:name=".view.ui.RegesterationActivity" android:parentActivityName=".view.ui.LoginActivity"/>
         <activity android:name=".view.ui.LoginActivity" />
         <activity android:name=".view.ui.SplashActivity">
             <intent-filter>

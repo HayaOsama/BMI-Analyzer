@@ -3,11 +3,11 @@ package com.example.bmianalyzer.view.ui;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.bmianalyzer.Model.SharedPreferencesHelper;
+import com.example.bmianalyzer.Model.storageHelpers.SharedPreferencesHelper;
+import com.example.bmianalyzer.Model.entity.User;
 import com.example.bmianalyzer.databinding.ActivitySplashBinding;
 
 public class SplashActivity extends AppCompatActivity {
@@ -24,7 +24,8 @@ public class SplashActivity extends AppCompatActivity {
 
 
     public void next(View view) {
-        if(SharedPreferencesHelper.isLoggedIn(this))
+        User user = SharedPreferencesHelper.getUser(getApplicationContext());
+        if(user!=null)
             intent = new Intent(this , HomeActivity.class);
         else
             intent = new Intent(this , LoginActivity.class);

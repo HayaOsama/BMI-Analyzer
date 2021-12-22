@@ -1,5 +1,6 @@
 package com.example.bmianalyzer.view.ui;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
@@ -30,6 +31,12 @@ private BMIRecord record ;
         binding = ActivityNewRecordBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         record = new BMIRecord(length,weight,"");
+        // calling the action bar
+        ActionBar actionBar = getSupportActionBar();
+
+        // showing the back button in action bar
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
         //attach onClickListeners
         binding.minusLength.setOnClickListener(this);
         binding.plusLength.setOnClickListener(this);

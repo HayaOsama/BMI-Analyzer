@@ -54,4 +54,15 @@
 
     <string name="kg">KG</string>
     <string name="cm">cm</string>
+    
+    <string-array name="food_category">
+        <item>Fruit</item>
+        <item>Vegetables</item>
+        <item>Fish</item>
+        <item>Meat</item>
+        <item>Drinks</item>
+        <item>Dessert</item>
+        <item>Snacks</item>
+        <item>Protein</item>
+    </string-array>
 </resources>

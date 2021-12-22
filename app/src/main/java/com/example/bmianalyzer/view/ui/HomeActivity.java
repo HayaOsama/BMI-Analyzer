@@ -7,17 +7,15 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
-import com.example.bmianalyzer.Model.Interfaces.BMIConstants;
-import com.example.bmianalyzer.Model.SharedPreferencesHelper;
+
+
+import com.example.bmianalyzer.Model.storageHelpers.SharedPreferencesHelper;
 import com.example.bmianalyzer.Model.entity.BMIRecord;
 import com.example.bmianalyzer.Model.entity.User;
 import com.example.bmianalyzer.R;
 import com.example.bmianalyzer.databinding.ActivityHomeBinding;
 import com.example.bmianalyzer.view.adapter.BMIRecordAdapter;
-
-import java.util.Date;
 
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
     private ActivityHomeBinding binding ;
@@ -49,9 +47,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         }
 
     void storeData(){
-        user =User.getUser(SharedPreferencesHelper.getUserName(this) , SharedPreferencesHelper.getUserPassword(this));
-        user.setGender(BMIConstants.FEMALE);
-        user.setBod(new Date(1999,4,17));
+        user = SharedPreferencesHelper.getUser(getApplicationContext());
+        if(user!=null)
         for(int i=0 ; i<=10 ; i++){
             user.addRecord(new BMIRecord(161 , (50+i) , ""+ (10+i) +"/" + (2+i) + "/2021"));
         }
@@ -69,7 +66,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.logout:
                 intent = new Intent(HomeActivity.this, LoginActivity.class );
-                //TODO: clear the shared preferences
+                SharedPreferencesHelper.clearUser(getApplicationContext());
                 break;
             default:
                 intent = new Intent(HomeActivity.this, SplashActivity.class);
