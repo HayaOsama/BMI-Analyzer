@@ -6,21 +6,26 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 
-
-import com.example.bmianalyzer.Model.storageHelpers.SharedPreferencesHelper;
 import com.example.bmianalyzer.Model.entity.BMIRecord;
+import com.example.bmianalyzer.Model.storageHelpers.FirebaseHelper;
+import com.example.bmianalyzer.Model.storageHelpers.SharedPreferencesHelper;
 import com.example.bmianalyzer.Model.entity.User;
 import com.example.bmianalyzer.R;
 import com.example.bmianalyzer.databinding.ActivityHomeBinding;
 import com.example.bmianalyzer.view.adapter.BMIRecordAdapter;
+import com.google.firebase.FirebaseApp;
+
+import java.util.ArrayList;
 
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
     private ActivityHomeBinding binding ;
     private static User user;
-    private BMIRecordAdapter adapter ;
+    private static BMIRecordAdapter adapter ;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -28,31 +33,27 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         binding = ActivityHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        storeData();
+
         //set the onClickListener
         binding.addFoodButton.setOnClickListener(this);
         binding.addRecordButton.setOnClickListener(this);
         binding.logout.setOnClickListener(this);
-
+        user = SharedPreferencesHelper.getUser(getApplicationContext());
         adapter = new BMIRecordAdapter(user , getBaseContext());
+
         binding.name.setText(user.getName());
-        binding.currentStatus.setText(user.getStatus());
-        binding.message.setText(user.getMessage());
+        binding.currentStatus.setText(BMIRecord.toStringStatus(user.calculateStatus()));
+        binding.message.setText(user.message());
         adapter.setRecords(user.getRecords());
 
-        binding.recyclerView.setAdapter(adapter);
 
+        notifyAdapter();
+        binding.recyclerView.setAdapter(adapter);
 
      //   Toast.makeText(this, "AGE = "+user.getAge(), Toast.LENGTH_SHORT).show();
         }
 
-    void storeData(){
-        user = SharedPreferencesHelper.getUser(getApplicationContext());
-        if(user!=null)
-        for(int i=0 ; i<=10 ; i++){
-            user.addRecord(new BMIRecord(161 , (50+i) , ""+ (10+i) +"/" + (2+i) + "/2021"));
-        }
-    }
+
 
     @Override
     public void onClick(View view) {
@@ -66,11 +67,29 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.logout:
                 intent = new Intent(HomeActivity.this, LoginActivity.class );
+                FirebaseHelper.getInstance().logout();
                 SharedPreferencesHelper.clearUser(getApplicationContext());
                 break;
             default:
                 intent = new Intent(HomeActivity.this, SplashActivity.class);
         }
         startActivity(intent);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        notifyAdapter();
+    }
+
+    public static User getUser(){
+        return user ;
+    }
+
+    public static void notifyAdapter(){
+        FirebaseHelper.getInstance().getRecords();
+        adapter.setRecords(user.getRecords());
+        adapter.notifyDataSetChanged();
+        Log.e("0000000000", "00000 storeData: " +user.getRecords());
     }
 }

@@ -9,11 +9,19 @@ public interface BMIConstants {
           int PICKER_REQUEST = 0 ;
           //SharedPreferences
           String USER_LOGIN_STATUS = "user_login_status" ;
-          String USER_NAME = "user_name" ;
-          String USER_GENDER = "user_gender" ;
-          String USER_STATUS = "user_status" ;
-          String USER_MESSAGE = "user_message" ;
-          String USER_PASSWORD ="user_password" ;
+          String USER_NAME = "name" ;
+          String USER_GENDER = "gender" ;
+          String USER_STATUS = "status" ;
+          String USER_MESSAGE = "message" ;
+          String USER_PASSWORD ="password" ;
           String USER_FILE= "user_file" ;
-          String USER_BOD= "user_bod" ;
+          String USER_BOD= "bod" ;
+          //firebase
+          String USERS ="users";
+          String UID = "uid";
+    String USER_RECORDS = "records";
+    String USER_LENGTH = "length" ;
+    String USER_WEIGHT = "weight" ;
+    String USER_EMAIL = "email" ;
+    //int LOG_IN = 1 , LOG_OUT = 0 ;
 }

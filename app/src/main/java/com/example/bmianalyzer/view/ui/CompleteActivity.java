@@ -16,12 +16,14 @@ import android.view.View;
 import android.widget.DatePicker;
 
 import com.example.bmianalyzer.Model.Interfaces.BMIConstants;
+import com.example.bmianalyzer.Model.storageHelpers.FirebaseHelper;
 import com.example.bmianalyzer.Model.storageHelpers.SharedPreferencesHelper;
 import com.example.bmianalyzer.Model.entity.BMIRecord;
 import com.example.bmianalyzer.Model.entity.User;
 import com.example.bmianalyzer.R;
 import com.example.bmianalyzer.databinding.ActivityCompleteBinding;
 import com.example.bmianalyzer.view.Pickers.DatePickerFragment;
+import com.google.firebase.FirebaseApp;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -42,7 +44,6 @@ public class CompleteActivity extends AppCompatActivity implements View.OnClickL
 
         // showing the back button in action bar
         actionBar.setDisplayHomeAsUpEnabled(true);
-
         //attach onClickListeners
         binding.minusLength.setOnClickListener(this);
         binding.plusLength.setOnClickListener(this);
@@ -77,7 +78,7 @@ public class CompleteActivity extends AppCompatActivity implements View.OnClickL
                 weight++;
                 binding.weightTxt.setText(String.format("%d", weight));
                 return;
-            case R.id.edit_date:
+            case R.id.dob_edit:
                 showDatePickerDialog();
                 return;
 
@@ -94,8 +95,9 @@ public class CompleteActivity extends AppCompatActivity implements View.OnClickL
         //todo: save the info in firebase
         if(binding.maleRd.isChecked())user.setGender(BMIConstants.MALE);
         else user.setGender(BMIConstants.FEMALE);
-        String date = Calendar.DAY_OF_MONTH+"/"+ Calendar.MONTH+"/"+Calendar.YEAR ;
-        user.addRecord(new BMIRecord(length , weight ,date));
+        user.setWeightKG(Double.parseDouble(binding.weightTxt.getText().toString()));
+        user.setLengthCM(Double.parseDouble(binding.length.getText().toString()));
+        FirebaseHelper.getInstance().completeRegistration(user);
         SharedPreferencesHelper.setUser(user,getApplicationContext());
         startActivity(new Intent(this, HomeActivity.class));
     }

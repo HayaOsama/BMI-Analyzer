@@ -9,9 +9,11 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.bmianalyzer.Model.Interfaces.BMIConstants;
+import com.example.bmianalyzer.Model.storageHelpers.FirebaseHelper;
 import com.example.bmianalyzer.Model.storageHelpers.SharedPreferencesHelper;
 import com.example.bmianalyzer.Model.entity.User;
 import com.example.bmianalyzer.databinding.ActivityLoginBinding;
+import com.google.firebase.FirebaseApp;
 
 import java.util.Date;
 
@@ -25,21 +27,25 @@ private User user ;
         setContentView(binding.getRoot());
         clicks();
 
-
-
-
     }
 
     private boolean check(String username, String password){
         //todo: check at the firebase
-        if(username.equals("haya")&&password.equals("123")){
-            user = User.getUser(username,password);
-            user.setGender(BMIConstants.FEMALE);
-            user.setBod(new Date(1999,4,17));
-            SharedPreferencesHelper.setUser(user,getApplicationContext());
-            return true ;
-        }
-       return false ;
+       user = FirebaseHelper.getInstance().login(username,password, this);
+       if(user!=null){
+
+           return true ;
+       }else{
+           return false;
+       }
+//        if(username.equals("haya")&&password.equals("123")){
+//            user = User.getUser(username,password);
+//            user.setGender(BMIConstants.FEMALE);
+//            user.setBod(new Date(1999,4,17));
+//            SharedPreferencesHelper.setUser(user,getApplicationContext());
+//            return true ;
+//        }
+//       return false ;
     }
 
 

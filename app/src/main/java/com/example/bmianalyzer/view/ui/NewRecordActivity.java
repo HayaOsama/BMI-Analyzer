@@ -15,15 +15,19 @@ import android.widget.TimePicker;
 
 import com.example.bmianalyzer.Model.Interfaces.BMIConstants;
 import com.example.bmianalyzer.Model.entity.BMIRecord;
+import com.example.bmianalyzer.Model.entity.User;
+import com.example.bmianalyzer.Model.storageHelpers.FirebaseHelper;
+import com.example.bmianalyzer.Model.storageHelpers.SharedPreferencesHelper;
 import com.example.bmianalyzer.R;
 
 import com.example.bmianalyzer.databinding.ActivityNewRecordBinding;
 import com.example.bmianalyzer.view.Pickers.DatePickerFragment;
 import com.example.bmianalyzer.view.Pickers.TimePickerFragment;
+import com.google.firebase.FirebaseApp;
 
 public class NewRecordActivity extends AppCompatActivity implements View.OnClickListener, DatePickerDialog.OnDateSetListener , TimePickerDialog.OnTimeSetListener {
 private ActivityNewRecordBinding binding ;
-private int length = 160 , weight = 60 ;
+private double length = 160 , weight = 60 ;
 private BMIRecord record ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +40,6 @@ private BMIRecord record ;
 
         // showing the back button in action bar
         actionBar.setDisplayHomeAsUpEnabled(true);
-
         //attach onClickListeners
         binding.minusLength.setOnClickListener(this);
         binding.plusLength.setOnClickListener(this);
@@ -46,6 +49,11 @@ private BMIRecord record ;
         binding.editTime.setOnClickListener(this);
         binding.saveDataBtn.setOnClickListener(this);
 
+        User user = SharedPreferencesHelper.getUser(getApplicationContext());
+        length = user.getLengthCM();
+        weight = user.getWeightKG();
+        binding.length.setText(String.format("%s", length));
+        binding.weightTxt.setText(String.format("%s", weight));
     }
 
 
@@ -57,22 +65,22 @@ private BMIRecord record ;
             case R.id.minus_length:
                 length--;
                 record.setLength(length);
-                binding.length.setText(String.format("%d", length));
+                binding.length.setText(String.format("%s", length));
                 return;
             case R.id.minus_weight:
                 weight--;
                 record.setWeight(weight);
-                binding.weightTxt.setText(String.format("%d", weight));
+                binding.weightTxt.setText(String.format("%s", weight));
                 return;
             case R.id.plus_length:
                 length++;
                 record.setLength(length);
-                binding.length.setText(String.format("%d", length));
+                binding.length.setText(String.format("%s", length));
                 return;
             case R.id.plus_weight:
                 weight++;
                 record.setWeight(weight);
-                binding.weightTxt.setText(String.format("%d", weight));
+                binding.weightTxt.setText(String.format("%s", weight));
                 return;
             case R.id.edit_date:
                 showDatePickerDialog();
@@ -89,8 +97,7 @@ private BMIRecord record ;
     }
 
     private void storeRecord() {
-        //todo: save the record in firebase
-
+        FirebaseHelper.getInstance().addBMIRecord(record);
         startActivity(new Intent(this,HomeActivity.class));
     }
 

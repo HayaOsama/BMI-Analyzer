@@ -8,9 +8,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.bmianalyzer.Model.storageHelpers.FirebaseHelper;
 import com.example.bmianalyzer.Model.storageHelpers.SharedPreferencesHelper;
 import com.example.bmianalyzer.Model.entity.User;
 import com.example.bmianalyzer.databinding.ActivityRegesterationBinding;
+import com.google.firebase.FirebaseApp;
 
 public class RegesterationActivity extends AppCompatActivity  {
 private ActivityRegesterationBinding binding ;
@@ -24,7 +26,6 @@ private ActivityRegesterationBinding binding ;
 
         // showing the back button in action bar
         actionBar.setDisplayHomeAsUpEnabled(true);
-
         clicks();
     }
 
@@ -51,7 +52,7 @@ private ActivityRegesterationBinding binding ;
     }
 
     private boolean register(){
-        //todo: firebase code
+
         String userName= binding.name.getText().toString();
         String userPassword= binding.password.getText().toString();
         String userRePassword= binding.repassword.getText().toString();
@@ -60,6 +61,8 @@ private ActivityRegesterationBinding binding ;
 
         if(userPassword.equals(userRePassword)){
             User user = User.getUser(userName,userPassword);
+            user.setEmail(binding.email.getText().toString());
+            FirebaseHelper.getInstance().createUser(user,this);
             SharedPreferencesHelper.setUser(user, getApplicationContext());
             return true ;
         }else{

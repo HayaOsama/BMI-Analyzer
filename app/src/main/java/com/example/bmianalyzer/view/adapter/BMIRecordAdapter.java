@@ -17,7 +17,6 @@ import com.example.bmianalyzer.Model.entity.User;
 import com.example.bmianalyzer.R;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 public class BMIRecordAdapter extends  RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
@@ -26,9 +25,10 @@ public class BMIRecordAdapter extends  RecyclerView.Adapter<RecyclerView.ViewHol
     private User user ;
 
     public BMIRecordAdapter(User user, Context context) {
-        records = user.getRecords();
-        this.context = context;
         this.user=user;
+     if (user!=null)  records = user.getRecords();
+        this.context = context;
+
     }
 
     public ArrayList<BMIRecord> getRecords() {
@@ -55,7 +55,7 @@ public class BMIRecordAdapter extends  RecyclerView.Adapter<RecyclerView.ViewHol
             bmiRecordHolder.date.setText(bmiRecord.getDate());
             bmiRecordHolder.length.setText(String.format("%s", bmiRecord.getLength()));
             bmiRecordHolder.weight.setText(String.format("%s", bmiRecord.getWeight()));
-            int status= BMIRecord.toStringStatus(bmiRecord.getStatus(user.getAgePercentage()));
+            int status= BMIRecord.toStringStatus(bmiRecord.getStatus(user.agePercentage()));
             bmiRecordHolder.status.setText(context.getString(status));
 
     }

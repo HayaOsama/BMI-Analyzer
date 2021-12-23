@@ -10,11 +10,19 @@ public class BMIRecord {
    private double length , weight ;
    private String date ;
    private String time ;
+   public static int KEY = 0;
+   private int key ;
 
     public BMIRecord(double length, double weight, String date) {
         this.length = length;
         this.weight = weight;
         this.date = date;
+        setKey();
+        KEY++;
+    }
+
+    public BMIRecord(){
+
     }
 
     public String getDate() {
@@ -70,5 +78,13 @@ public class BMIRecord {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public int getKey() {
+        return key;
+    }
+
+    public void setKey() {
+        this.key = KEY;
     }
 }
